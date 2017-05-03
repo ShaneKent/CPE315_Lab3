@@ -16,17 +16,23 @@ main:
 # [2b]  Get a count into $t3
 #  add your instruction that will initialize $t3
 # Hint: how many words are in the list?
-
-#  (add your code here ...)
+	
+	ori $t3, $zero, 9
 
 #	Initialize the total (sum) value into a register (e.g., $t0) = 0
 #	Add an instruction here that clears $t0
 
 #  [2c] (add your code here ...)
 
+	and $t0, 0
+	
+
 
 loop:	lw	$t1, 0($t4)		# [2d]  what does this do ?
-
+	add 	$t0, $t0, $t1
+	addi	$t4, $t4, 4
+	addi	$t3, $t3, -1
+	bne 	$t3, $zero, loop
 
 # [2e]  Now add the code needed to accumulate the sum, advance the $t4 pointer, and test the count 
 #  (add your code here ...)
@@ -41,7 +47,9 @@ loop:	lw	$t1, 0($t4)		# [2d]  what does this do ?
 
 #   [2f]  (your code goes here)
 
-
+	move	$a0, $t4
+	ori 	$v0, 1
+	syscall
 
 #	[2g]  Now use the syscall capability.  See your green card.
 # 	Print the value of $t0
